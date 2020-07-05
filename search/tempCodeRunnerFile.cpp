@@ -1,0 +1,1 @@
+printf("%d %d %d\n",hh.second.second,hh.second.first,hh.first);
