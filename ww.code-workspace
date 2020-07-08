@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "C:\\Users\\32001\\Desktop\\python"
+		},
+		{
+			"path": "C:\\Users\\32001\\Desktop\\coding\\c++"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"cmath": "cpp",
+			"iostream": "cpp",
+			"valarray": "cpp"
+		}
+	}
+}
