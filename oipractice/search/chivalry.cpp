@@ -1,4 +1,5 @@
 #include <cstring>
+#include <cstdio>
 #include <algorithm>
 #include <iostream>
 #include <map>
@@ -36,7 +37,7 @@ il int astar(){
 }
 il void solve(int x,int y,int step){
         if(!astar()){ans=min(ans,step);return;}
-        if(astar()+step>15)return;
+        if(astar()+step>ans)return;
         for(int i=0;i<8;i++){
             int xx=x+dx[i],yy=y+dy[i];
             if(xx<0||xx>4||yy<0||yy>4)continue;
