@@ -5,7 +5,7 @@ using namespace std;
 #define re register
 #define il inline
 const int N=2e5+5;
-int n,vv[N],maxx[N];
+int n,vv[N],maxx[N]={-0x3f};
 void solve(){
     int res=0;
     cin>>n;
