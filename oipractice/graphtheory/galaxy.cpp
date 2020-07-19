@@ -3,37 +3,41 @@
 #include <cstring>
 #include <cstdio>
 #include <algorithm>
+#include <queue>
 #include <cmath>
 #define il inline
 #define ll long long
 using namespace std;
-const int N=1e5+5,M=3e5+5;
+const int N=1e5+5,M=2e5+5;
 int h[N],nex[M],w[M],to[M],cnt=1,n,m,dist[N],cc[N];
 il void add(int a,int b ,int c){to[cnt]=b,w[cnt]=c,nex[cnt]=h[a],h[a]=cnt++;}
-bool spfa(){
+bool dijkstra(){
     memset(dist,-0x3f,sizeof dist);
-    int q[N],tt;
+    priority_queue<int> q;
     bool st[N];
     dist[0]=0;
-    q[tt++]=0;
-    while(tt){
-        int hh=q[--tt];
+    q.push(0);
+    int tcc=0;
+    while(!q.empty()){
+        tcc++;
+        if(tcc>N<<4)return false;
+        int hh=q.top();
+        q.pop();
         st[hh]=false;
         for(int i=h[hh];i;i=nex[i]){
             int j=to[i];
             if(dist[j]<dist[hh]+w[i]){
                 dist[j]=dist[hh]+w[i];
                 cc[j]=cc[hh]+1;
-                //printf("%d %d %d %d\n",hh,j,dist[hh],dist[j]);
                 if(cc[j]>n)return false;
                 if(!st[j]){
-                    q[tt++]=j;
+                    q.push(j);
                     st[j]=true;
                 }
             }
         }
+        return true;
     }
-    return true;
 }
 int main(){
     scanf("%d%d",&n,&m);
@@ -60,10 +64,9 @@ int main(){
         }
     }
     ll ans=0;
-    if(!spfa())ans=-1;
+    if(!dijkstra())ans=-1;
     else {
         for(int i=1;i<=n;i++){
-            //printf("%d ",dist[i]);
             ans+=(ll)dist[i];
         }
     }
