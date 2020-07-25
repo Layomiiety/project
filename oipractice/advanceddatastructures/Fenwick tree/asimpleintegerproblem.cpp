@@ -10,7 +10,7 @@
 using namespace std;
 #define il inline 
 #define LL long long
-const int N=2e5+5;
+const int N=5e5+5;
 int c[N],n,m,ori[N];
 il int lowbit(int x){return x&-x;}
 il void add(int cc,int p){
@@ -28,9 +28,9 @@ int main(){
     }
     for(int i=1;i<=n;i++)c[i]=ori[i]-ori[i-lowbit(i)];
     while(m--){
-        char op;
-        scanf("%s",&op);
-        if(op=='C'){
+        int op;
+        scanf("%d",&op);
+        if(op==1){
             int l,r,d;
             scanf("%d%d%d",&l,&r,&d);
             add(d,l);
