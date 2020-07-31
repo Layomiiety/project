@@ -1,29 +1,25 @@
-#include <bits/stdc++.h>
+//acw831
+#include <iostream>
+#include <cstring>
+#include <cstdio>
 using namespace std;
-#define ll long long
-#define ull unsigned long long
-#define il inline
-#define re register
-const int maxn=1e6+5;
-char a[maxn],b[maxn];
-int bor[maxn],sa,sb,cur=0;
+char p[100005],s[1000005];
+int n,m,nex[100005];
 int main(){
-    scanf("%s%s",a+1,b+1);
-    sa=strlen(a+1);
-    sb=strlen(b+1);
-    for(re int i=2,j=0;i<=sb;i++){
-        while(j&&b[j+1]!=b[i])j=bor[j];
-        if(b[j+1]==b[i])j++;
-        bor[i]=j;
-        }
-    for(re int i=1,j=0;i<=sa;i++){
-        while(j&&b[j+1]!=a[i])j=bor[j];
-        if(b[j+1]==a[i])j++;
-        if(j==sb){
-            printf("%d\n",i-sb+1);
-            j=bor[j];
-            }
+    cin>>n>>p+1>>m>>s+1;
+    for(int i=2;i<=n;i++){
+        int j=nex[i-1];
+        while(j&&p[i]!=p[j+1])j=nex[j];
+        if(p[i]==p[j+1])j++;
+        nex[i]=j;
     }
-    for(int i=1;i<=sb;i++)printf("%d ",bor[i]);
+    for(int i=1,j=0;i<=m;i++){
+        while(j&&s[i]!=p[j+1])j=nex[j];
+        if(s[i]==p[j+1])j++;
+        if(j==n){
+            printf("%d ",i-n);
+            j=nex[j];
+        }
+    }
     return 0;
 }
