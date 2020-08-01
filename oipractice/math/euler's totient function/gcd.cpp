@@ -1,4 +1,4 @@
-//acw1291
+//acw220
 #include <iostream>
 #include <cstring>
 #include <cstdio>
@@ -6,17 +6,18 @@
 using namespace std;
 #define il inline
 typedef long long LL;
-const int N=1002;
+const int N=1e7+5;
 int n,c;
-int pr[N],phi[N],cnt;
+int pr[N>>1];
+LL phi[N],cnt;
 void init(){
     phi[1]=1;
-    for(int i=2;i<=1000;i++){
+    for(int i=2;i<=n;i++){
         if(!phi[i]){
             pr[cnt++]=i;
             phi[i]=i-1;
         }
-        for(int j=0;j<cnt&&pr[j]*i<=N;j++){
+        for(int j=0;j<cnt&&pr[j]*i<=n;j++){
             if(!(i%pr[j])){
                 phi[i*pr[j]]=phi[i]*pr[j];
                 break;
@@ -27,12 +28,12 @@ void init(){
     }
 }
 int main(){
-    scanf("%d",&c);
+    scanf("%d",&n);
     init();
-    //for(int i=0;i<=50;i++)printf("%d %d\n",i,phi[i]);
-    for(int i=1;i<=c;i++){
-        scanf("%d",&n);
-        printf("%d %d %d\n",i,n,phi[n]*2+1);
+    LL res=0;
+    for(int i=0;i<cnt;i++){
+        res+=(LL)(2*phi[(n/pr[i])]-1);
     }
+    printf("%lld",res);
     return 0;
 }
