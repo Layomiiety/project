@@ -1,14 +1,14 @@
 //acw2521
 #include <bits/stdc++.h>
 using namespace std;
-const int N=10005,M=1005,C=1e6+5;
-int n,m,len,cnt[C],c[N],cq,cd,ans[N];
+const int N=133333;
+int n,m,len,cnt[N],c[N],cq,cd,ans[N];
 struct query{
     int id,l,r,t;
 }q[N];
 struct md{
     int x,c;
-}dd[M];
+}dd[N];
 inline int get(int x){return x/len;}
 bool cmp(query a,query b){
     if(get(a.l)!=get(b.l))return get(a.l)<get(b.l);
@@ -33,7 +33,7 @@ int main(){
         if(*op=='Q')q[cq++]={cq-1,x,y,cd};
         else dd[cd++]={x,y};
     }
-    len = cbrt((double)n * cd) + 1;
+    len=ceil(exp((log(n)+log(cd))/3));
     sort(q,q+cq,cmp);
     for(int i=0,j=1,t=0,k=0,res=0;k<cq;k++){
         int l=q[k].l,r=q[k].r,tt=q[k].t,id=q[k].id;
